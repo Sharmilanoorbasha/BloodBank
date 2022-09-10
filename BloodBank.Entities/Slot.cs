@@ -22,7 +22,7 @@ namespace BloodBank.Entities
     
         public System.Guid SlotId { get; set; }
         public System.DateTime SlotTime { get; set; }
-        public int HospitalHospitalName { get; set; }
+        public string HospitalHospitalName { get; set; }
     
         public virtual Hospital Hospital { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

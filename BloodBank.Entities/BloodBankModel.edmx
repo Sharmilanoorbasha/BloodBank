@@ -27,7 +27,7 @@
     <Key>
       <PropertyRef Name="UserName" />
     </Key>
-    <Property Name="UserName" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="30" />
     <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Age" Type="nvarchar(max)" Nullable="false" />
@@ -43,7 +43,7 @@
     <Key>
       <PropertyRef Name="HospitalName" />
     </Key>
-    <Property Name="HospitalName" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HospitalName" Type="nvarchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="30" />
     <Property Name="City" Type="nvarchar(max)" Nullable="false" />
     <Property Name="State" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Area" Type="nvarchar(max)" Nullable="false" />
@@ -55,7 +55,7 @@
     </Key>
     <Property Name="SlotId" Type="uniqueidentifier" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SlotTime" Type="datetime" Nullable="false" />
-    <Property Name="HospitalHospitalName" Type="int" Nullable="false" />
+    <Property Name="HospitalHospitalName" Type="nvarchar" Nullable="false" MaxLength="30" />
   </EntityType>
   <EntityType Name="BloodReqs">
     <Key>
@@ -66,7 +66,7 @@
     <Property Name="PatientPhoneNo" Type="nvarchar(max)" Nullable="false" />
     <Property Name="BloodGroup" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="UserUserName" Type="int" Nullable="false" />
+    <Property Name="UserUserName" Type="nvarchar" Nullable="false" MaxLength="30" />
     <Property Name="SlotSlotId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <Association Name="UserBloodReq">
@@ -131,7 +131,7 @@
           <Key>
             <PropertyRef Name="UserName" />
           </Key>
-          <Property Name="UserName" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" MaxLength="30" />
           <Property Name="FirstName" Type="String" Nullable="false" />
           <Property Name="LastName" Type="String" Nullable="false" />
           <Property Name="Age" Type="String" Nullable="false" />
@@ -148,7 +148,7 @@
           <Key>
             <PropertyRef Name="HospitalName" />
           </Key>
-          <Property Name="HospitalName" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HospitalName" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" MaxLength="30" />
           <Property Name="City" Type="String" Nullable="false" />
           <Property Name="State" Type="String" Nullable="false" />
           <Property Name="Area" Type="String" Nullable="false" />
@@ -162,7 +162,7 @@
           <Property Name="SlotId" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SlotTime" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Hospital" Relationship="BloodBankModel.HospitalSlot" FromRole="Slot" ToRole="Hospital" />
-          <Property Name="HospitalHospitalName" Type="Int32" Nullable="false" />
+          <Property Name="HospitalHospitalName" Type="String" Nullable="false" MaxLength="30" />
           <NavigationProperty Name="BloodReqs" Relationship="BloodBankModel.SlotBloodReq" FromRole="Slot" ToRole="BloodReq" />
         </EntityType>
         <EntityType Name="BloodReq">
@@ -175,7 +175,7 @@
           <Property Name="BloodGroup" Type="String" Nullable="false" />
           <Property Name="Status" Type="String" Nullable="false" />
           <NavigationProperty Name="User" Relationship="BloodBankModel.UserBloodReq" FromRole="BloodReq" ToRole="User" />
-          <Property Name="UserUserName" Type="Int32" Nullable="false" />
+          <Property Name="UserUserName" Type="String" Nullable="false" MaxLength="30" />
           <NavigationProperty Name="Slot" Relationship="BloodBankModel.SlotBloodReq" FromRole="BloodReq" ToRole="Slot" />
           <Property Name="SlotSlotId" Type="Guid" Nullable="false" />
         </EntityType>

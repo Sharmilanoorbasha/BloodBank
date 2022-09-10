@@ -19,7 +19,7 @@ namespace BloodBank.Entities
         public string PatientPhoneNo { get; set; }
         public string BloodGroup { get; set; }
         public string Status { get; set; }
-        public int UserUserName { get; set; }
+        public string UserUserName { get; set; }
         public System.Guid SlotSlotId { get; set; }
     
         public virtual User User { get; set; }

@@ -20,7 +20,7 @@ namespace BloodBank.Entities
             this.Slots = new HashSet<Slot>();
         }
     
-        public int HospitalName { get; set; }
+        public string HospitalName { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string Area { get; set; }

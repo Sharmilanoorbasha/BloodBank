@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/10/2022 14:11:19
+-- Date Created: 09/10/2022 18:32:38
 -- Generated from EDMX file: C:\Training\BloodBank\BloodBank.Entities\BloodBankModel.edmx
 -- --------------------------------------------------
 
@@ -50,7 +50,7 @@ GO
 
 -- Creating table 'Users'
 CREATE TABLE [dbo].[Users] (
-    [UserName] int IDENTITY(1,1) NOT NULL,
+    [UserName] nvarchar(30)  NOT NULL,
     [FirstName] nvarchar(max)  NOT NULL,
     [LastName] nvarchar(max)  NOT NULL,
     [Age] nvarchar(max)  NOT NULL,
@@ -66,7 +66,7 @@ GO
 
 -- Creating table 'Hospitals'
 CREATE TABLE [dbo].[Hospitals] (
-    [HospitalName] int IDENTITY(1,1) NOT NULL,
+    [HospitalName] nvarchar(30)  NOT NULL,
     [City] nvarchar(max)  NOT NULL,
     [State] nvarchar(max)  NOT NULL,
     [Area] nvarchar(max)  NOT NULL,
@@ -78,7 +78,7 @@ GO
 CREATE TABLE [dbo].[Slots] (
     [SlotId] uniqueidentifier  NOT NULL,
     [SlotTime] datetime  NOT NULL,
-    [HospitalHospitalName] int  NOT NULL
+    [HospitalHospitalName] nvarchar(30)  NOT NULL
 );
 GO
 
@@ -89,7 +89,7 @@ CREATE TABLE [dbo].[BloodReqs] (
     [PatientPhoneNo] nvarchar(max)  NOT NULL,
     [BloodGroup] nvarchar(max)  NOT NULL,
     [Status] nvarchar(max)  NOT NULL,
-    [UserUserName] int  NOT NULL,
+    [UserUserName] nvarchar(30)  NOT NULL,
     [SlotSlotId] uniqueidentifier  NOT NULL
 );
 GO
