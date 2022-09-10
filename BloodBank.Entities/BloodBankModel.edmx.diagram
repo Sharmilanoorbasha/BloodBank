@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3ae505d5d2c64052b39eb3e338123666" Name="Diagram1" >
+        <EntityTypeShape EntityType="BloodBankModel.User" Width="1.5" PointX="10.75" PointY="0.5" />
+        <EntityTypeShape EntityType="BloodBankModel.Hospital" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="BloodBankModel.Slot" Width="1.5" PointX="4" PointY="0.5" />
+        <EntityTypeShape EntityType="BloodBankModel.BloodReq" Width="1.5" PointX="6.875" PointY="0.5" />
+        <AssociationConnector Association="BloodBankModel.UserBloodReq" />
+        <AssociationConnector Association="BloodBankModel.HospitalSlot" />
+        <AssociationConnector Association="BloodBankModel.SlotBloodReq" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

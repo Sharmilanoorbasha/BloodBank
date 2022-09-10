@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BloodBankModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BloodBankModelStoreContainer">
+    <EntitySet Name="Users" EntityType="BloodBankModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Hospitals" EntityType="BloodBankModel.Store.Hospitals" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Slots" EntityType="BloodBankModel.Store.Slots" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BloodReqs" EntityType="BloodBankModel.Store.BloodReqs" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserBloodReq" Association="BloodBankModel.Store.UserBloodReq">
+      <End Role="User" EntitySet="Users" />
+      <End Role="BloodReq" EntitySet="BloodReqs" />
+    </AssociationSet>
+    <AssociationSet Name="HospitalSlot" Association="BloodBankModel.Store.HospitalSlot">
+      <End Role="Hospital" EntitySet="Hospitals" />
+      <End Role="Slot" EntitySet="Slots" />
+    </AssociationSet>
+    <AssociationSet Name="SlotBloodReq" Association="BloodBankModel.Store.SlotBloodReq">
+      <End Role="Slot" EntitySet="Slots" />
+      <End Role="BloodReq" EntitySet="BloodReqs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Age" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ContactNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Weight" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BloodGroup" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hospitals">
+    <Key>
+      <PropertyRef Name="HospitalName" />
+    </Key>
+    <Property Name="HospitalName" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Area" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Pincode" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Slots">
+    <Key>
+      <PropertyRef Name="SlotId" />
+    </Key>
+    <Property Name="SlotId" Type="uniqueidentifier" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SlotTime" Type="datetime" Nullable="false" />
+    <Property Name="HospitalHospitalName" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BloodReqs">
+    <Key>
+      <PropertyRef Name="ReqId" />
+    </Key>
+    <Property Name="ReqId" Type="uniqueidentifier" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PatientPhoneNo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BloodGroup" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserUserName" Type="int" Nullable="false" />
+    <Property Name="SlotSlotId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <Association Name="UserBloodReq">
+    <End Role="User" Type="BloodBankModel.Store.Users" Multiplicity="1" />
+    <End Role="BloodReq" Type="BloodBankModel.Store.BloodReqs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserName" />
+      </Principal>
+      <Dependent Role="BloodReq">
+        <PropertyRef Name="UserUserName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HospitalSlot">
+    <End Role="Hospital" Type="BloodBankModel.Store.Hospitals" Multiplicity="1" />
+    <End Role="Slot" Type="BloodBankModel.Store.Slots" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospital">
+        <PropertyRef Name="HospitalName" />
+      </Principal>
+      <Dependent Role="Slot">
+        <PropertyRef Name="HospitalHospitalName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SlotBloodReq">
+    <End Role="Slot" Type="BloodBankModel.Store.Slots" Multiplicity="1" />
+    <End Role="BloodReq" Type="BloodBankModel.Store.BloodReqs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Slot">
+        <PropertyRef Name="SlotId" />
+      </Principal>
+      <Dependent Role="BloodReq">
+        <PropertyRef Name="SlotSlotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="BloodBankModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="BloodBankModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="BloodBankModel.User" />
+          <EntitySet Name="Hospitals" EntityType="BloodBankModel.Hospital" />
+          <EntitySet Name="Slots" EntityType="BloodBankModel.Slot" />
+          <EntitySet Name="BloodReqs" EntityType="BloodBankModel.BloodReq" />
+          <AssociationSet Name="UserBloodReq" Association="BloodBankModel.UserBloodReq">
+            <End Role="User" EntitySet="Users" />
+            <End Role="BloodReq" EntitySet="BloodReqs" />
+          </AssociationSet>
+          <AssociationSet Name="HospitalSlot" Association="BloodBankModel.HospitalSlot">
+            <End Role="Hospital" EntitySet="Hospitals" />
+            <End Role="Slot" EntitySet="Slots" />
+          </AssociationSet>
+          <AssociationSet Name="SlotBloodReq" Association="BloodBankModel.SlotBloodReq">
+            <End Role="Slot" EntitySet="Slots" />
+            <End Role="BloodReq" EntitySet="BloodReqs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Age" Type="String" Nullable="false" />
+          <Property Name="Gender" Type="String" Nullable="false" />
+          <Property Name="ContactNumber" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Weight" Type="String" Nullable="false" />
+          <Property Name="BloodGroup" Type="String" Nullable="false" />
+          <Property Name="Role" Type="String" Nullable="false" />
+          <NavigationProperty Name="BloodReqs" Relationship="BloodBankModel.UserBloodReq" FromRole="User" ToRole="BloodReq" />
+        </EntityType>
+        <EntityType Name="Hospital">
+          <Key>
+            <PropertyRef Name="HospitalName" />
+          </Key>
+          <Property Name="HospitalName" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="String" Nullable="false" />
+          <Property Name="State" Type="String" Nullable="false" />
+          <Property Name="Area" Type="String" Nullable="false" />
+          <Property Name="Pincode" Type="String" Nullable="false" />
+          <NavigationProperty Name="Slots" Relationship="BloodBankModel.HospitalSlot" FromRole="Hospital" ToRole="Slot" />
+        </EntityType>
+        <EntityType Name="Slot">
+          <Key>
+            <PropertyRef Name="SlotId" />
+          </Key>
+          <Property Name="SlotId" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SlotTime" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Hospital" Relationship="BloodBankModel.HospitalSlot" FromRole="Slot" ToRole="Hospital" />
+          <Property Name="HospitalHospitalName" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BloodReqs" Relationship="BloodBankModel.SlotBloodReq" FromRole="Slot" ToRole="BloodReq" />
+        </EntityType>
+        <EntityType Name="BloodReq">
+          <Key>
+            <PropertyRef Name="ReqId" />
+          </Key>
+          <Property Name="ReqId" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientName" Type="String" Nullable="false" />
+          <Property Name="PatientPhoneNo" Type="String" Nullable="false" />
+          <Property Name="BloodGroup" Type="String" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="BloodBankModel.UserBloodReq" FromRole="BloodReq" ToRole="User" />
+          <Property Name="UserUserName" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Slot" Relationship="BloodBankModel.SlotBloodReq" FromRole="BloodReq" ToRole="Slot" />
+          <Property Name="SlotSlotId" Type="Guid" Nullable="false" />
+        </EntityType>
+        <Association Name="UserBloodReq">
+          <End Type="BloodBankModel.User" Role="User" Multiplicity="1" />
+          <End Type="BloodBankModel.BloodReq" Role="BloodReq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserName" />
+            </Principal>
+            <Dependent Role="BloodReq">
+              <PropertyRef Name="UserUserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HospitalSlot">
+          <End Type="BloodBankModel.Hospital" Role="Hospital" Multiplicity="1" />
+          <End Type="BloodBankModel.Slot" Role="Slot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hospital">
+              <PropertyRef Name="HospitalName" />
+            </Principal>
+            <Dependent Role="Slot">
+              <PropertyRef Name="HospitalHospitalName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SlotBloodReq">
+          <End Type="BloodBankModel.Slot" Role="Slot" Multiplicity="1" />
+          <End Type="BloodBankModel.BloodReq" Role="BloodReq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Slot">
+              <PropertyRef Name="SlotId" />
+            </Principal>
+            <Dependent Role="BloodReq">
+              <PropertyRef Name="SlotSlotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BloodBankModelStoreContainer" CdmEntityContainer="BloodBankModelContainer">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(BloodBankModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hospitals">
+      <EntityTypeMapping TypeName="IsTypeOf(BloodBankModel.Hospital)">
+        <MappingFragment StoreEntitySet="Hospitals">
+          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Slots">
+      <EntityTypeMapping TypeName="IsTypeOf(BloodBankModel.Slot)">
+        <MappingFragment StoreEntitySet="Slots">
+          <ScalarProperty Name="SlotId" ColumnName="SlotId" />
+          <ScalarProperty Name="SlotTime" ColumnName="SlotTime" />
+          <ScalarProperty Name="HospitalHospitalName" ColumnName="HospitalHospitalName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BloodReqs">
+      <EntityTypeMapping TypeName="IsTypeOf(BloodBankModel.BloodReq)">
+        <MappingFragment StoreEntitySet="BloodReqs">
+          <ScalarProperty Name="ReqId" ColumnName="ReqId" />
+          <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+          <ScalarProperty Name="PatientPhoneNo" ColumnName="PatientPhoneNo" />
+          <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserUserName" ColumnName="UserUserName" />
+          <ScalarProperty Name="SlotSlotId" ColumnName="SlotSlotId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
