@@ -48,11 +48,50 @@ namespace BloodBank.DataLayer
             }
         }
 
+        public Slot GetSlot(Guid SlotId) {
+            Slot s = new Slot();
+            using (SqlConnection con = new SqlConnection(Connstr)) {
+                SqlCommand cmd = new SqlCommand("Select * from Slots where SlotId=@SlotId", con);
+                cmd.Parameters.AddWithValue("@SlotId",SlotId);
+                con.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader()) { 
+                    reader.Read();
+                    s.SlotId = (Guid)reader["SlotId"];
+                    s.SlotTime = (DateTime)reader["SlotTime"];
+                    s.HospitalHospitalName = reader["HospitalHospitalName"].ToString();
+                }
+                return s;
+            }
+        }
+
+        public IEnumerable<Slot> GetAllSlots()
+        {
+            
+            using (SqlConnection con = new SqlConnection(Connstr))
+            {
+                List<Slot> lst = new List<Slot>();
+                SqlCommand cmd = new SqlCommand("Select * from Slots", con);
+                con.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read()){
+                        Slot s = new Slot();
+                        s.SlotId = (Guid)reader["SlotId"];
+                        s.SlotTime = (DateTime)reader["SlotTime"];
+                        s.HospitalHospitalName = reader["HospitalHospitalName"].ToString();
+                        lst.Add(s);
+                    }
+                }
+                return lst;
+            }
+        }
+
         public IEnumerable<Slot> GetSlotsByHospital(string HospitalName){
             List<Slot> lst = new List<Slot>();
             using (SqlConnection con = new SqlConnection(Connstr)) {
                 SqlCommand cmd = new SqlCommand("Select * from Slots where HospitalHospitalName=@HospitalName", con);
                 cmd.Parameters.AddWithValue("@HospitalName", HospitalName);
+                con.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader()) {
                     while (reader.Read()) {
                         Slot s = new Slot();

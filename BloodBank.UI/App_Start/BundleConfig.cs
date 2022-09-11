@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Optimization;
-using System.Web.UI;
+﻿using System.Web.Optimization;
 
 namespace BloodBank.UI
 {
@@ -33,6 +28,15 @@ namespace BloodBank.UI
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                             "~/Scripts/modernizr-*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                         "~/Scripts/bootstrap.bundle.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                          "~/Scripts/jquery-3.6.0.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap.min.css", "~/Content/site.css"));
+
         }
     }
 }

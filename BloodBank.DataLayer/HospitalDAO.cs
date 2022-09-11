@@ -31,7 +31,7 @@ namespace BloodBank.DataLayer
         public void EditHospital(Hospital hos) {
             using (SqlConnection con = new SqlConnection(Connstr))
             {
-                SqlCommand cmd = new SqlCommand("Update Hospitals set City=@City, State=@State, Area=@Area, Pincode=@Pincode where HospitalName=@HospitalName)", con);
+                SqlCommand cmd = new SqlCommand("Update Hospitals set City=@City,State=@State,Area=@Area,Pincode=@Pincode where HospitalName=@HospitalName", con);
                 cmd.Parameters.AddWithValue("@HospitalName", hos.HospitalName);
                 cmd.Parameters.AddWithValue("@City", hos.City);
                 cmd.Parameters.AddWithValue("@State", hos.State);
@@ -69,7 +69,7 @@ namespace BloodBank.DataLayer
             }
         }
 
-        public IEnumerable<Hospital> GetAllHospitals(string City) {
+        public IEnumerable<Hospital> GetAllHospitals() {
             List<Hospital> lst = new List<Hospital>();
             using (SqlConnection con = new SqlConnection(Connstr)) {
                 SqlCommand cmd = new SqlCommand("Select * from Hospitals", con);
