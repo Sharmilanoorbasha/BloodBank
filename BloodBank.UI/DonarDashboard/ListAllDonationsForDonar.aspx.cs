@@ -14,16 +14,19 @@ namespace BloodBank.UI.DonarDashboard
         BloodReqDAO reqDAO = new BloodReqDAO(); 
         protected void Page_Load(object sender, EventArgs e)
         {
-            HospitalDAO hospitalDAO = new HospitalDAO();
-            DonarListView.DataSource = reqDAO.GetBloodReqByUser(Session["username"].ToString());
-            OthersListView.DataSource = reqDAO.GetBloodReqByOthers(Session["username"].ToString());
-            DonarListView.DataBind();
-            OthersListView.DataBind();
-            var hospitals = hospitalDAO.GetAllHospitals();
-            AddHospitalDropDownList.DataSource = hospitals.Select(i => i.HospitalName).ToList();
-            EditHospitalDropDownList.DataSource = hospitals.Select(i => i.HospitalName).ToList();
-            AddHospitalDropDownList.DataBind();
-            EditHospitalDropDownList.DataBind();
+            if (!IsPostBack)
+            {
+                HospitalDAO hospitalDAO = new HospitalDAO();
+                DonarListView.DataSource = reqDAO.GetBloodReqByUser(Session["username"].ToString());
+                OthersListView.DataSource = reqDAO.GetBloodReqByOthers(Session["username"].ToString());
+                DonarListView.DataBind();
+                OthersListView.DataBind();
+                var hospitals = hospitalDAO.GetAllHospitals();
+                AddHospitalDropDownList.DataSource = hospitals.Select(i => i.HospitalName).ToList();
+                EditHospitalDropDownList.DataSource = hospitals.Select(i => i.HospitalName).ToList();
+                AddHospitalDropDownList.DataBind();
+                EditHospitalDropDownList.DataBind();
+            }
         }
 
         protected void AddHospitalDropDownList_SelectedIndexChanged(object sender, EventArgs e)
@@ -88,7 +91,7 @@ namespace BloodBank.UI.DonarDashboard
             Label l2 = (Label)e.Item.FindControl("DonarSlotInfo");
             var s = slotDAO.GetSlot(req.SlotSlotId);
             var h = hospitalDAO.GetHospital(s.HospitalHospitalName);
-            l1.Text = h.Area+", "+h.City+", "+h.State+", "+h.Pincode;
+            l1.Text = h.HospitalName+", "+h.Area+", "+h.City+", "+h.State+", "+h.Pincode;
             l2.Text = s.SlotTime.ToString();
             
         }
@@ -102,7 +105,7 @@ namespace BloodBank.UI.DonarDashboard
             Label l2 = (Label)e.Item.FindControl("DonateSlotInfo");
             var s = slotDAO.GetSlot(req.SlotSlotId);
             var h = hospitalDAO.GetHospital(s.HospitalHospitalName);
-            l1.Text = h.Area + ", " + h.City + ", " + h.State + ", " + h.Pincode;
+            l1.Text = h.HospitalName+", "+h.Area + ", " + h.City + ", " + h.State + ", " + h.Pincode;
             l2.Text = s.SlotTime.ToString();
         }
     }
