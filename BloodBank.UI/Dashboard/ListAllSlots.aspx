@@ -17,7 +17,7 @@
                             <label>Select Hospital :</label><br/>
                             <asp:DropDownList ID="EditHospitalDropDownList"  class="form-control w-100" runat="server"></asp:DropDownList><br/>
                             <label>Slot Time:</label>
-                            <input class="form-control mb-2" type="datetime-local" data-val="true" id="EditSlotTime" name="SlotTime" value="" runat="server">
+                            <input class="form-control mb-2" type="datetime-local" data-val="true" id="EditSlotTime" name="SlotTime" runat="server">
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>

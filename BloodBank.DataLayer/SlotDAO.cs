@@ -27,10 +27,9 @@ namespace BloodBank.DataLayer
         }
 
         public void EditSlot(Slot slot) {
-            slot.SlotId = Guid.NewGuid();
             using (SqlConnection con = new SqlConnection(Connstr))
             {
-                SqlCommand cmd = new SqlCommand("Update Slots set SlotTime=@SlotTime, HospitalHospitalName=@HospitalName where SlotId=@SlotId", con);
+                SqlCommand cmd = new SqlCommand("Update Slots set SlotTime=@SlotTime,HospitalHospitalName=@HospitalName where SlotId=@SlotId", con);
                 cmd.Parameters.AddWithValue("@SlotId", slot.SlotId);
                 cmd.Parameters.AddWithValue("@SlotTime", slot.SlotTime);
                 cmd.Parameters.AddWithValue("@HospitalName", slot.HospitalHospitalName);

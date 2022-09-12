@@ -43,7 +43,8 @@ namespace BloodBank.UI.Dashboard
             var s = slotDAO.GetSlot(id);
             EditSlotId.Value = s.SlotId.ToString();
             EditHospitalDropDownList.SelectedValue = s.HospitalHospitalName;
-            EditSlotTime.Value = s.SlotTime.ToLongTimeString();
+            //2022-07-16T23:54:00.000
+            EditSlotTime.Value = s.SlotTime.ToString("s").ToString();
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "EditModal", "$('#EditModal').modal();", true);
             upModal.Update();
         }
@@ -59,10 +60,11 @@ namespace BloodBank.UI.Dashboard
         protected void SaveEditChanges_Click(object sender, EventArgs e)
         {
             Entities.Slot s = new Entities.Slot();
-            s.HospitalHospitalName = EditHospitalDropDownList.Text;
-            s.SlotTime= Convert.ToDateTime(EditSlotTime.Value);
             Guid id = new Guid(EditSlotId.Value);
             s.SlotId = id;
+           
+            s.SlotTime= Convert.ToDateTime(EditSlotTime.Value);
+            s.HospitalHospitalName = EditHospitalDropDownList.Text;
             slotDAO.EditSlot(s);
             Response.Redirect("ListAllSlots.aspx");
         }
