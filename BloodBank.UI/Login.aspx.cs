@@ -25,7 +25,7 @@ namespace BloodBank.UI
                     Label1.Text = "";
                     if (user.Role.Equals("Admin"))
                         Response.Redirect("~/Dashboard/ListAllDonations.aspx");
-                    Response.Redirect("#");
+                    Response.Redirect("~/DonarDashboard/ListAllDonationsForDonar.aspx");
                 }
                 else
                 {

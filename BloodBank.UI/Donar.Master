@@ -1,12 +1,12 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="BloodBank.UI.Admin" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Donar.master.cs" Inherits="BloodBank.UI.Donar" %>
 
 <!DOCTYPE html>
 
 <html lang="en">
 <head runat="server">
+    <title>Donar Dashboard</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin</title>
     <asp:PlaceHolder runat="server">
         <%: Styles.Render("~/Content/css") %>
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -18,7 +18,7 @@
     </asp:PlaceHolder>
 </head>
 <body>
-    <form runat="server">
+    <form id="form1" runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -38,6 +38,7 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
+
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" runat="server">
             <div class="d-flex flex-column mr-4 text-light">
                 <span class="font-weight-bolder h3 ml-5 pl-2 my-0">Blood Bank</span>
@@ -50,26 +51,21 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link active h5" runat="server" href="~/Dashboard/ListAllDonations.aspx">Donations<span class="sr-only">(current)</span></a>
+                        <a class="nav-link active h5" runat="server" href="~/DonarDashboard/ListAllDonationsForDonar.aspx">Donar Dashboard<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active h5" runat="server" href="~/Dashboard/ListAllHospitals.aspx">Hospitals</a>
+                        <a class="nav-link active h5" runat="server" href="~/DonarDashboard/UserProfile.aspx">My Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active h5" runat="server" href="~/Dashboard/ListAllSlots.aspx">Slots</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <asp:LinkButton class="nav-link active h5" runat="server" ID="AdminLogout" OnClick="AdminLogout_Click">Logout</asp:LinkButton>
+                        <asp:LinkButton class="nav-link active h5" runat="server" ID="DonarLogout" OnClick="DonarLogout_Click">Logout</asp:LinkButton>
                     </li>
                 </ul>
             </div>
         </nav>
         <div class="">
-            <asp:ContentPlaceHolder ID="AdminContent" runat="server">
+            <asp:ContentPlaceHolder ID="DonarContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-        <hr />
         <footer>
             <p class="text-center">&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
         </footer>

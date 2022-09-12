@@ -59,6 +59,7 @@
                         <label for="password" class="font-weight-bold">Password</label>
                         <asp:TextBox ID="TextBox2" type="password" required="true" class="form-control" runat="server" MaxLength="50" Width="400px"></asp:TextBox>
                     </div>
+                    
                     <asp:Label ID="Label1" runat="server" ForeColor="Red"></asp:Label><br />
                     <div class="d-flex mt-2">
                         <asp:Button ID="Button1" class="offset-3 btn btn-primary" runat="server" Text="Login" OnClick="Button1_Click" /><br />
