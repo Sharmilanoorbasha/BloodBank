@@ -12,9 +12,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <asp:UpdatePanel ID="upModal" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
+                        <asp:UpdatePanel ID="upModal" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <asp:HiddenField ID="EditReqId" runat="server" />
+                                <asp:HiddenField ID="EditUserName" runat="server" />
+                                <asp:HiddenField ID="EditStatus" runat="server" />
                                 <label>Patient Name:</label>
                                 <asp:TextBox class="form-control mb-2" ID="EditPatientName" runat="server" Type="string"></asp:TextBox>
                                 <label>Patient PhoneNo:</label>
@@ -32,6 +34,7 @@
                                 </asp:DropDownList>
                                 <label>Select Hospital :</label><br />
                                 <asp:DropDownList class="form-control w-100" ID="EditHospitalDropDownList" runat="server" OnSelectedIndexChanged="EditHospitalDropDownList_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList><br />
+
                                 <label>Select Your Slot :</label>
                                 <asp:DropDownList class="form-control w-100" ID="EditSlotId" runat="server"></asp:DropDownList><br />
                             </ContentTemplate>

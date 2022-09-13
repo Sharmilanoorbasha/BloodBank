@@ -82,6 +82,28 @@ namespace BloodBank.DataLayer
             }
         }
 
+        public BloodReq GetBloodReq(Guid ReqId) {
+            BloodReq req = new BloodReq();
+            using (SqlConnection con = new SqlConnection(Connstr))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from BloodReqs where ReqId=@ReqId", con);
+                cmd.Parameters.AddWithValue("@ReqId", ReqId);
+                con.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    req.ReqId = (Guid)reader["ReqId"];
+                    req.PatientName = reader["PatientName"].ToString();
+                    req.PatientPhoneNo = reader["PatientPhoneNo"].ToString();
+                    req.BloodGroup = reader["BloodGroup"].ToString();
+                    req.Status = reader["Status"].ToString();
+                    req.UserUserName = reader["UserUserName"].ToString();
+                    req.SlotSlotId = (Guid)reader["SlotSlotId"];
+                }
+                return req;
+            }
+        }
+
         public IEnumerable<BloodReq> GetBloodReqByOthers(string UserName) {
             List<BloodReq> lst = new List<BloodReq>();
             using (SqlConnection con = new SqlConnection(Connstr))

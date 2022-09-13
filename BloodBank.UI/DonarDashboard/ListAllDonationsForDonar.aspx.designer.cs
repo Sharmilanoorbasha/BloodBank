@@ -33,6 +33,24 @@ namespace BloodBank.UI.DonarDashboard
         protected global::System.Web.UI.WebControls.HiddenField EditReqId;
 
         /// <summary>
+        /// EditUserName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField EditUserName;
+
+        /// <summary>
+        /// EditStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField EditStatus;
+
+        /// <summary>
         /// EditPatientName control.
         /// </summary>
         /// <remarks>
