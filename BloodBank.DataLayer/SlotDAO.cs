@@ -69,7 +69,7 @@ namespace BloodBank.DataLayer
             using (SqlConnection con = new SqlConnection(Connstr))
             {
                 List<Slot> lst = new List<Slot>();
-                SqlCommand cmd = new SqlCommand("Select * from Slots", con);
+                SqlCommand cmd = new SqlCommand("Select * from Slots Order By SlotTime DESC", con);
                 con.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {

@@ -36,6 +36,7 @@
             </svg>
             <span class="text-light">Add Slot</span>
         </asp:LinkButton>
+        <asp:Label ID="SlotWarning" class="offset-3 font-weight-bolder" ForeColor="Red" runat="server"></asp:Label><br/>
         <div class="modal fade" id="AddSlot" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">

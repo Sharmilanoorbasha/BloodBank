@@ -55,7 +55,7 @@
             </svg>
             <span class="text-light">Request Donation</span>
         </asp:LinkButton>
-
+        <asp:Label ID="DonarRequestWarning" class="offset-3 font-weight-bolder" ForeColor="Red" runat="server"></asp:Label><br/>
         <div class="modal fade" id="AddBloodReq" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <asp:UpdatePanel runat="server" ID="AddReqOuterModal" ChildrenAsTriggers="false" UpdateMode="Conditional">

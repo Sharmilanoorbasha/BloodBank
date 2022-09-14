@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,7 +13,7 @@ namespace BloodBank.UI.DonarDashboard
 {
     public partial class ListAllDonationsForDonar : System.Web.UI.Page
     {
-        BloodReqDAO reqDAO = new BloodReqDAO(); 
+        BloodReqDAO reqDAO = new BloodReqDAO();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -29,33 +30,46 @@ namespace BloodBank.UI.DonarDashboard
                 EditHospitalDropDownList.DataBind();
             }
         }
-
+        
         protected void AddHospitalDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
             SlotDAO slotDAO = new SlotDAO();
-            AddSlotId.DataSource = slotDAO.GetSlotsByHospital(AddHospitalDropDownList.SelectedValue).Select(i => new { Name = i.SlotTime, Value=i.SlotId }).ToList();
+            AddSlotId.DataSource = slotDAO.GetSlotsByHospital(AddHospitalDropDownList.SelectedValue).Select(i => new { Name = i.SlotTime, Value = i.SlotId }).ToList();
             AddSlotId.DataTextField = "Name";
             AddSlotId.DataValueField = "Value";
             AddSlotId.DataBind();
             AddReqOuterModal.Update();
-            
+
             /*ScriptManager.RegisterStartupScript(Page, Page.GetType(), "AddBloodReqModal", "$('#AddBloodReq').modal();", true);*/
 
         }
+    
+    
 
         protected void CreateBloodReq_Click(object sender, EventArgs e)
         {
-            Entities.BloodReq req = new BloodReq();
-            req.ReqId = Guid.NewGuid();
-            req.PatientName = AddPatientName.Text;
-            req.PatientPhoneNo = AddPatientPhoneNo.Text;
-            req.BloodGroup = AddBloodGroup.Text;
-            req.Status = "Open";
-            req.UserUserName = Session["username"].ToString();
-            Guid id = new Guid(AddSlotId.SelectedValue);
-            req.SlotSlotId = id;
-            reqDAO.AddBloodReq(req);
-            Response.Redirect("ListAllDonationsForDonar.aspx");
+            if (AddPatientName.Text == "")
+            {
+                DonarRequestWarning.Text = "Patient Name is Required!!";
+            }
+            else if(AddPatientPhoneNo.Text.Length != 10 || AddPatientPhoneNo.Text == "" || !Regex.IsMatch(AddPatientPhoneNo.Text, "^([7-9]{1})([0-9]{9})$".ToString()))
+            {
+                DonarRequestWarning.Text = "Enter Valid PhoneNumber";
+            }
+            else
+            {
+                Entities.BloodReq req = new BloodReq();
+                req.ReqId = Guid.NewGuid();
+                req.PatientName = AddPatientName.Text;
+                req.PatientPhoneNo = AddPatientPhoneNo.Text;
+                req.BloodGroup = AddBloodGroup.Text;
+                req.Status = "Open";
+                req.UserUserName = Session["username"].ToString();
+                Guid id = new Guid(AddSlotId.SelectedValue);
+                req.SlotSlotId = id;
+                reqDAO.AddBloodReq(req);
+                Response.Redirect("ListAllDonationsForDonar.aspx");
+            }
         }
 
         protected void EditBloodReq_Click(object sender, EventArgs e)

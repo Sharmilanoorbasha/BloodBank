@@ -60,6 +60,15 @@ namespace BloodBank.UI.Dashboard
         protected global::System.Web.UI.WebControls.Button SaveEditChanges;
 
         /// <summary>
+        /// SlotWarning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SlotWarning;
+
+        /// <summary>
         /// AddHospitalDropDownList control.
         /// </summary>
         /// <remarks>

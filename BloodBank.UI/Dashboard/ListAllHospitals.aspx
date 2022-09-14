@@ -82,6 +82,7 @@
         </div>
     </div>
     <div class="container">
+        
         <div class="h4 mt-3 mb-3">Hospital Dashboard :</div>
         <asp:LinkButton class="ml-3 mb-3 lead btn btn-primary" runat="server" Style="cursor: pointer; color: dodgerblue" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight1" aria-controls="offcanvasRight" data-toggle="modal" data-target="#AddHospital">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
@@ -89,6 +90,7 @@
             </svg>
             <span class="text-light">Add Hospital</span>
         </asp:LinkButton>
+        <asp:Label ID="HospitalWarning" class="offset-3 font-weight-bolder" ForeColor="Red" runat="server"></asp:Label><br/>
         <div class="modal fade" id="AddHospital" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -99,6 +101,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        
                         <label>Hospital Name</label>
                         <asp:TextBox class="form-control mb-2" ID="AddHospitalName" runat="server" Type="string"></asp:TextBox>
                         <label>Area</label>

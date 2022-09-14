@@ -105,6 +105,15 @@ namespace BloodBank.UI.DonarDashboard
         protected global::System.Web.UI.WebControls.Button SaveEditChanges;
 
         /// <summary>
+        /// DonarRequestWarning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DonarRequestWarning;
+
+        /// <summary>
         /// AddReqOuterModal control.
         /// </summary>
         /// <remarks>

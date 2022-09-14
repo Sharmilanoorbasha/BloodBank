@@ -1,5 +1,6 @@
 ﻿using BloodBank.DataLayer;
 using System;
+using System.Text.RegularExpressions;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -39,14 +40,33 @@ namespace BloodBank.UI.Dashboard
 
         protected void SaveEditChanges_Click(object sender, EventArgs e)
         {
-            Entities.Hospital hos = new Entities.Hospital();
-            hos.HospitalName = EditHospitalName.Value;
-            hos.Area = EditArea.Text;
-            hos.City = EditCity.Text;
-            hos.State = EditState.Text;
-            hos.Pincode = EditPincode.Text;
-            hosDAO.EditHospital(hos);
-            Response.Redirect("ListAllHospitals.aspx");
+            if (EditArea.Text == "")
+            {
+                HospitalWarning.Text = "Area is Required!!";
+            }
+            else if (EditCity.Text == "")
+            {
+                HospitalWarning.Text = "City is Required!!";
+            }
+            else if (EditState.Text == "")
+            {
+                HospitalWarning.Text = "State is Required!!";
+            }
+            else if (!Regex.IsMatch(EditPincode.Text, "^([0-9]{6})$") || EditPincode.Text == "")
+            {
+                HospitalWarning.Text = "Invaild Pincode!!";
+            }
+            else
+            {
+                Entities.Hospital hos = new Entities.Hospital();
+                hos.HospitalName = EditHospitalName.Value;
+                hos.Area = EditArea.Text;
+                hos.City = EditCity.Text;
+                hos.State = EditState.Text;
+                hos.Pincode = EditPincode.Text;
+                hosDAO.EditHospital(hos);
+                Response.Redirect("ListAllHospitals.aspx");
+            }
         }
 
         protected void DeleteHospital_Click(object sender, EventArgs e)
@@ -58,14 +78,29 @@ namespace BloodBank.UI.Dashboard
 
         protected void CreateHospital_Click(object sender, EventArgs e)
         {
-            Entities.Hospital hos = new Entities.Hospital();
-            hos.HospitalName = AddHospitalName.Text;
-            hos.Area = AddArea.Text;
-            hos.City = AddCity.Text;
-            hos.State = AddState.Text;
-            hos.Pincode = AddPincode.Text;
-            hosDAO.AddHospital(hos);
-            Response.Redirect("ListAllHospitals.aspx");
+            if (AddHospitalName.Text == "") {
+                HospitalWarning.Text = "Hospital Name is Required!!";
+            }
+            else if (AddArea.Text == "") {
+                HospitalWarning.Text = "Area is Required!!";
+            }else if (AddCity.Text == "") {
+                HospitalWarning.Text = "City is Required!!";
+            }else if (AddState.Text == "") {
+                HospitalWarning.Text = "State is Required!!";
+            }else if (!Regex.IsMatch(AddPincode.Text,"^([0-9]{6})$") || AddPincode.Text == "") {
+                HospitalWarning.Text = "Invaild Pincode!!";
+            }
+            else
+            {
+                Entities.Hospital hos = new Entities.Hospital();
+                hos.HospitalName = AddHospitalName.Text;
+                hos.Area = AddArea.Text;
+                hos.City = AddCity.Text;
+                hos.State = AddState.Text;
+                hos.Pincode = AddPincode.Text;
+                hosDAO.AddHospital(hos);
+                Response.Redirect("ListAllHospitals.aspx");
+            }
 
         }
     }

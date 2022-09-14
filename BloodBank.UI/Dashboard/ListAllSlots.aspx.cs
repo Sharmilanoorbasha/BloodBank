@@ -2,6 +2,7 @@
 using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,30 +15,41 @@ namespace BloodBank.UI.Dashboard
         SlotDAO slotDAO = new SlotDAO();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            HospitalDAO hospitalDAO = new HospitalDAO();
-            var hospitals = hospitalDAO.GetAllHospitals();
-            AddHospitalDropDownList.DataSource = hospitals.Select(i => i.HospitalName).ToList();
-            AddHospitalDropDownList.DataBind();
-            EditHospitalDropDownList.DataSource = hospitals.Select(i => i.HospitalName).ToList();
-            SlotListView.DataSource = slotDAO.GetAllSlots();
-            SlotListView.DataBind();
+            if(!IsPostBack)
+            {
+                HospitalDAO hospitalDAO = new HospitalDAO();
+                var hospitals = hospitalDAO.GetAllHospitals();
+                AddHospitalDropDownList.DataSource = hospitals.Select(i => i.HospitalName).ToList();
+                AddHospitalDropDownList.DataBind();
+                SlotListView.DataSource = slotDAO.GetAllSlots();
+                SlotListView.DataBind();
+
+            }
         }
 
         protected void CreateSlot_Click(object sender, EventArgs e)
         {
-            Entities.Slot s = new Entities.Slot();
-            s.SlotId = Guid.NewGuid();
-            s.SlotTime = Convert.ToDateTime(AddSlotTime.Value.ToString());
-            s.HospitalHospitalName = AddHospitalDropDownList.SelectedValue.ToString();
-            slotDAO.AddSlot(s);
-            Response.Redirect("ListAllSlots.aspx");
+            if (AddSlotTime.Value == "") {
+                SlotWarning.Text = "Slot Time is Required!!";
+            }
+            else {
+                Entities.Slot s = new Entities.Slot();
+                s.SlotId = Guid.NewGuid();
+                s.SlotTime = Convert.ToDateTime(AddSlotTime.Value.ToString());
+                s.HospitalHospitalName = AddHospitalDropDownList.Text;
+                slotDAO.AddSlot(s);
+                Response.Redirect("ListAllSlots.aspx"); }
 
         }
 
         protected void EditSlot_Click(object sender, EventArgs e)
         {
+            HospitalDAO hospitalDAO = new HospitalDAO();
+            var hospitals = hospitalDAO.GetAllHospitals();
+            EditHospitalDropDownList.DataSource = hospitals.Select(i => i.HospitalName).ToList();
             EditHospitalDropDownList.DataBind();
+
+
             LinkButton btn = (LinkButton)sender;
             Guid id = new Guid(btn.CommandArgument.ToString());
             var s = slotDAO.GetSlot(id);
@@ -59,14 +71,18 @@ namespace BloodBank.UI.Dashboard
 
         protected void SaveEditChanges_Click(object sender, EventArgs e)
         {
-            Entities.Slot s = new Entities.Slot();
-            Guid id = new Guid(EditSlotId.Value);
-            s.SlotId = id;
-           
-            s.SlotTime= Convert.ToDateTime(EditSlotTime.Value);
-            s.HospitalHospitalName = EditHospitalDropDownList.Text;
-            slotDAO.EditSlot(s);
-            Response.Redirect("ListAllSlots.aspx");
+            if (EditSlotTime.Value == "") {
+                SlotWarning.Text = "Slot Time is Required!!";
+            }
+            else {
+                Entities.Slot s = new Entities.Slot();
+                Guid id = new Guid(EditSlotId.Value);
+                s.SlotId = id;
+
+                s.SlotTime = Convert.ToDateTime(EditSlotTime.Value);
+                s.HospitalHospitalName = EditHospitalDropDownList.Text;
+                slotDAO.EditSlot(s);
+                Response.Redirect("ListAllSlots.aspx"); }
         }
     }
 }
