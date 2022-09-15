@@ -48,15 +48,7 @@ namespace BloodBank.UI.DonarDashboard
 
         protected void CreateBloodReq_Click(object sender, EventArgs e)
         {
-            if (AddPatientName.Text == "")
-            {
-                DonarRequestWarning.Text = "Patient Name is Required!!";
-            }
-            else if(AddPatientPhoneNo.Text.Length != 10 || AddPatientPhoneNo.Text == "" || !Regex.IsMatch(AddPatientPhoneNo.Text, "^([7-9]{1})([0-9]{9})$".ToString()))
-            {
-                DonarRequestWarning.Text = "Enter Valid PhoneNumber";
-            }
-            else
+            
             {
                 Entities.BloodReq req = new BloodReq();
                 req.ReqId = Guid.NewGuid();
@@ -131,18 +123,34 @@ namespace BloodBank.UI.DonarDashboard
 
         protected void SaveEditChanges_Click(object sender, EventArgs e)
         {
-            BloodReq req = new BloodReq();
-            Guid reqId = new Guid(EditReqId.Value);
-            req.ReqId = reqId;
-            req.PatientName = EditPatientName.Text;
-            req.PatientPhoneNo = EditPatientPhoneNo.Text;
-            req.BloodGroup = EditBloodGroup.Text;
-            req.Status = EditStatus.Value;
-            req.UserUserName = EditUserName.Value;
-            Guid slotId = new Guid(EditSlotId.SelectedValue);
-            req.SlotSlotId = slotId;
-            reqDAO.EditBloodReq(req);
-            Response.Redirect("ListAllDonationsForDonar.aspx");
+            if (EditPatientName.Text == "")
+            {
+                DonarRequestWarning.Text = "Patient Name is Required!!";
+            }
+            else if (EditPatientPhoneNo.Text.Length != 10 || !Regex.IsMatch(EditPatientPhoneNo.Text, "^([7-9]{1})([0-9]{9})$".ToString()))
+            {
+                DonarRequestWarning.Text = "Enter Valid PhoneNumber";
+            }
+            else if(EditPatientPhoneNo.Text == "")
+            {
+                DonarRequestWarning.Text = "Patient Phone Number is Required!!";
+            }
+            else
+            {
+                BloodReq req = new BloodReq();
+                Guid reqId = new Guid(EditReqId.Value);
+                req.ReqId = reqId;
+                req.PatientName = EditPatientName.Text;
+                req.PatientPhoneNo = EditPatientPhoneNo.Text;
+                req.BloodGroup = EditBloodGroup.Text;
+                req.Status = EditStatus.Value;
+                req.UserUserName = EditUserName.Value;
+                Guid slotId = new Guid(EditSlotId.SelectedValue);
+                req.SlotSlotId = slotId;
+                reqDAO.EditBloodReq(req);
+                Response.Redirect("ListAllDonationsForDonar.aspx");
+            }
+            
         }
 
         protected void DonarListView_ItemDataBound(object sender, ListViewItemEventArgs e)
