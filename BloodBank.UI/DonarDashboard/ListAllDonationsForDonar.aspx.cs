@@ -48,7 +48,26 @@ namespace BloodBank.UI.DonarDashboard
 
         protected void CreateBloodReq_Click(object sender, EventArgs e)
         {
-            
+            if (AddPatientName.Text == "")
+            {
+                AddDonarRequestWarning.Text = "Patient Name is Required!!";
+                AddReqOuterModal.Update();
+            }
+            else if (AddPatientPhoneNo.Text == "")
+            {
+                AddDonarRequestWarning.Text = "Patient Phone Number is Required!!";
+                AddReqOuterModal.Update();
+            }
+            else if (AddPatientPhoneNo.Text.Length != 10 || !Regex.IsMatch(AddPatientPhoneNo.Text, "^([7-9]{1})([0-9]{9})$".ToString()))
+            {
+                AddDonarRequestWarning.Text = "Enter Valid PhoneNumber";
+                AddReqOuterModal.Update();
+            }else if (AddSlotId.Text == "" )
+            {
+                AddDonarRequestWarning.Text = "Slot Time is Required!!";
+                AddReqOuterModal.Update();
+            }
+            else
             {
                 Entities.BloodReq req = new BloodReq();
                 req.ReqId = Guid.NewGuid();
@@ -127,13 +146,13 @@ namespace BloodBank.UI.DonarDashboard
             {
                 DonarRequestWarning.Text = "Patient Name is Required!!";
             }
+            else if (EditPatientPhoneNo.Text == "")
+            {
+                DonarRequestWarning.Text = "Patient Phone Number is Required!!";
+            }
             else if (EditPatientPhoneNo.Text.Length != 10 || !Regex.IsMatch(EditPatientPhoneNo.Text, "^([7-9]{1})([0-9]{9})$".ToString()))
             {
                 DonarRequestWarning.Text = "Enter Valid PhoneNumber";
-            }
-            else if(EditPatientPhoneNo.Text == "")
-            {
-                DonarRequestWarning.Text = "Patient Phone Number is Required!!";
             }
             else
             {

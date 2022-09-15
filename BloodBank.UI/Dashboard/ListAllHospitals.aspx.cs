@@ -52,7 +52,7 @@ namespace BloodBank.UI.Dashboard
             {
                 HospitalWarning.Text = "State is Required!!";
             }
-            else if (!Regex.IsMatch(EditPincode.Text, "^([0-9]{6})$") || EditPincode.Text == "")
+            else if (!Regex.IsMatch(EditPincode.Text, "^([1-9][0-9]{5})$") || EditPincode.Text == "")
             {
                 HospitalWarning.Text = "Invaild Pincode!!";
             }

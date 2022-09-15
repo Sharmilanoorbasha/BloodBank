@@ -54,9 +54,9 @@
                 <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
             </svg>
             <span class="text-light">Request Donation</span>
-        </asp:LinkButton>
+        </asp:LinkButton> 
         <asp:Label ID="DonarRequestWarning" class="offset-3 font-weight-bolder" ForeColor="Red" runat="server"></asp:Label><br/>
-        <div class="modal fade" id="AddBloodReq" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="AddBloodReq" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">    
             <div class="modal-dialog">
                 <asp:UpdatePanel runat="server" ID="AddReqOuterModal" ChildrenAsTriggers="false" UpdateMode="Conditional">
                     <ContentTemplate>
@@ -68,6 +68,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
+                                <asp:Label runat="server" ID="AddDonarRequestWarning" class="my-2 font-weight-bolder" ForeColor="Red"></asp:Label><br/>
                                 <label>Patient Name:</label>
                                 <asp:TextBox class="form-control mb-2" ID="AddPatientName" runat="server" Type="string"></asp:TextBox>
                                 <label>Patient PhoneNo:</label>
