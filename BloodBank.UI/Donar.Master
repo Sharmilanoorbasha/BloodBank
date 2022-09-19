@@ -54,9 +54,6 @@
                         <a class="nav-link active h5" runat="server" href="~/DonarDashboard/ListAllDonationsForDonar.aspx">Donar Dashboard<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active h5" runat="server" href="~/DonarDashboard/UserProfile.aspx">My Profile</a>
-                    </li>
-                    <li class="nav-item">
                         <asp:LinkButton class="nav-link active h5" runat="server" ID="DonarLogout" OnClick="DonarLogout_Click">Logout</asp:LinkButton>
                     </li>
                 </ul>

@@ -115,7 +115,6 @@
     <Content Include="Dashboard\ListAllDonations.aspx" />
     <Content Include="Dashboard\ListAllSlots.aspx" />
     <Content Include="DonarDashboard\ListAllDonationsForDonar.aspx" />
-    <Content Include="DonarDashboard\UserProfile.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Dashboard\ListAllHospitals.aspx" />
@@ -285,13 +284,6 @@
     </Compile>
     <Compile Include="DonarDashboard\ListAllDonationsForDonar.aspx.designer.cs">
       <DependentUpon>ListAllDonationsForDonar.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DonarDashboard\UserProfile.aspx.cs">
-      <DependentUpon>UserProfile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DonarDashboard\UserProfile.aspx.designer.cs">
-      <DependentUpon>UserProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
